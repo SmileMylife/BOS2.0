@@ -1,6 +1,6 @@
 package com.baidu.service.impl;
 
-import com.baidu.dao.es.WayBillElasticsearchRepository;
+//import com.baidu.dao.es.WayBillElasticsearchRepository;
 import com.baidu.dao.base.WayBillRepository;
 import com.baidu.domain.WayBill;
 import com.baidu.service.base.WayBillService;
@@ -20,8 +20,8 @@ public class WayBillServiceImpl implements WayBillService {
     @Autowired
     private WayBillRepository wbr;
 
-    @Autowired
-    private WayBillElasticsearchRepository wber;
+//    @Autowired
+//    private WayBillElasticsearchRepository wber;
     //保存运单
     @Override
     public void saveWayBill(WayBill model) {
@@ -30,13 +30,13 @@ public class WayBillServiceImpl implements WayBillService {
         if (wayBill == null) {
             //之前不存在
             wbr.save(model);
-            wber.save(model);
+//            wber.save(model);
         }else {
             //之前就已经存在
             Integer id = wayBill.getId();
             BeanUtils.copyProperties(wayBill,model);
             wayBill.setId(id);
-            wber.save(wayBill);
+//            wber.save(wayBill);
         }
     }
 

@@ -2,6 +2,8 @@ package com.baidu.service.base;
 
 import com.baidu.domain.Role;
 import com.baidu.domain.User;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
@@ -10,4 +12,8 @@ import java.util.List;
  */
 public interface RoleService {
     List<Role> findByUsers(User user);
+
+    Page<Role> findRolesByPaging(Pageable pageable);
+
+    void addRole(Role model);
 }

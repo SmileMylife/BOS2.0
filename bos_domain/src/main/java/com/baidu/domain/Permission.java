@@ -1,5 +1,7 @@
 package com.baidu.domain;
 
+import org.apache.struts2.json.annotations.JSON;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -54,7 +56,7 @@ public class Permission {
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
 	}
-
+	@JSON(serialize = false)
 	public Set<Role> getRoles() {
 		return roles;
 	}

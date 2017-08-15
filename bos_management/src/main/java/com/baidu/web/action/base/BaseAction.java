@@ -12,7 +12,7 @@ import java.util.Map;
  * Created by ZhangPei on 2017/7/28.
  */
 public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
-
+    public final String FAIL = "fail";
     //用于拿到模型对象的class对象
     public Class<T> clazz;
 

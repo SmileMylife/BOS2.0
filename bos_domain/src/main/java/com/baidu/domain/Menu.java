@@ -1,5 +1,7 @@
 package com.baidu.domain;
 
+import org.apache.struts2.json.annotations.JSON;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -81,7 +83,7 @@ public class Menu {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-
+	@JSON(serialize = false)
 	public Set<Role> getRoles() {
 		return roles;
 	}
@@ -89,7 +91,7 @@ public class Menu {
 	public void setRoles(Set<Role> roles) {
 		this.roles = roles;
 	}
-
+	@JSON(serialize = false)
 	public Set<Menu> getChildrenMenus() {
 		return childrenMenus;
 	}

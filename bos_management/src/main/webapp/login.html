@@ -7,15 +7,11 @@
 		<script src="jquery-1.8.3.js" type="text/javascript"></script>
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.css">
 		<link rel="stylesheet" type="text/css" href="css/login.css">
-		<script type="text/javascript">
-			$(document).ready(function () {
-				alert("1111");
-            })
-		</script>
 	</head>
 	
 	<body>
-		<div class="loginbox">
+	<script src="http://open.sojson.com/common/js/canvas-nest.min.js" count="200" zindex="-2" opacity="0.5" color="47,135,193" type="text/javascript"></script>
+	<div class="loginbox">
 		<div class="loginnav">
 			<nav class="navbar navbar-default">
 				<div class="container">
@@ -48,7 +44,7 @@
 						<div class="form-group">
 							<label for="inputvalidate" class="col-sm-3 control-label">验证码</label>
 							<div class="col-sm-4">
-								<input type="text" class="form-control" id="inputaccount" placeholder="请输入验证码">
+								<input type="text" class="form-control" id="inputaccount" placeholder="验证码">
 							</div>
 							<div class="col-sm-4">
 								<img id="loginform:vCode" src="validatecode.jsp"  onclick="javascript:document.getElementById('loginform:vCode'). src='validatecode.jsp?'+Math.random();" />

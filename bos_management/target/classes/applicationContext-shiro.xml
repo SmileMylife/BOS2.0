@@ -32,11 +32,14 @@
             <value>
                 /jquery-1.8.3.js* anon
                 /validatecode.jsp* anon
+                /login.action* anon
                 /login.html* anon
-                /login.action anon
                 /css/** anon
-                /js/** anon
+                /easyui/** anon
+                /ocupload/** anon
                 /img/** anon
+                /images/** anon
+                /ztree/** anon
                 /images/** anon
                 /pages/base/courier.html* = perms[courier:list]
                 /pages/base/area.html* = roles[base]
