@@ -34,6 +34,8 @@
                 /validatecode.jsp* anon
                 /login.action* anon
                 /login.html* anon
+                /userindex.html* anon
+                /userlist.html* anon
                 /css/** anon
                 /easyui/** anon
                 /ocupload/** anon
@@ -49,6 +51,7 @@
     </bean>
     <!--配置安全管理器-->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <property name="cacheManager" ref="shiroCacheManager"></property>
         <property name="realm" ref="userRealm"></property>
     </bean>
     <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"></bean>
@@ -58,5 +61,16 @@
     </bean>
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"></property>
+    </bean>
+
+    <!--使用ehcache-->
+
+    <!--shiro的cachemanager-->
+    <bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManager" ref="ehcacheManagerFactory"></property>
+    </bean>
+    <!--重新配置bos-realm-->
+    <bean id="userRealm" class="com.baidu.realm.UserRealm">
+        <property name="authorizationCacheName" value="bos"></property>
     </bean>
 </beans>

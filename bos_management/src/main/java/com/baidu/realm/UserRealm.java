@@ -15,7 +15,6 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.security.Security;
 import java.util.List;
 import java.util.Set;
 
@@ -35,7 +34,7 @@ public class UserRealm extends AuthorizingRealm {
         SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
         //获取当前用户
         Subject subject = SecurityUtils.getSubject();
-        User user = (User)subject.getPrincipal();
+        User user = (User) subject.getPrincipal();
         //用当前用户去查角色表
         List<Role> list = rs.findByUsers(user);
         for (int i = 0; i < list.size(); i++) {
@@ -58,7 +57,6 @@ public class UserRealm extends AuthorizingRealm {
             return null;
         }
         User user = us.findByUsername(username);
-        System.err.println(user);
         return new SimpleAuthenticationInfo(user, user.getPassword(), getName());
     }
 }

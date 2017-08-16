@@ -15,5 +15,8 @@ public interface RoleService {
 
     Page<Role> findRolesByPaging(Pageable pageable);
 
-    void addRole(Role model);
+    void addRole(String ids, String[] permissionArr, Role model);
+
+    List<Role> findAllRoles();
+
 }
