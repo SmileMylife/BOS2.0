@@ -4,6 +4,7 @@ import com.baidu.dao.base.StandardRepository;
 import com.baidu.domain.Standard;
 import com.baidu.service.base.StandardService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -24,18 +25,20 @@ public class StandardServiceImpl implements StandardService {
     private StandardRepository sr;
 
     //新增取派标准
+    @CacheEvict(value = "standard", allEntries = true)
     public void save(Standard standard) {
         sr.save(standard);
     }
 
     //分页查询所有取派标准
-    @Cacheable("bos")
+    @Cacheable(value = "standard", key = "pageable.pageNumber+'_'+pageable.pageSize")
     public Page<Standard> standardPageQuery(Pageable pageable) {
         Page<Standard> page = sr.findAll(pageable);
         return page;
     }
 
     //查询所有取派标准，用于加载下拉列表
+    @Cacheable("standard")
     public List<Standard> findAllStandard() {
         List<Standard> list = sr.findAll();
         return list;
