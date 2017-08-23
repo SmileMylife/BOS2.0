@@ -12,6 +12,7 @@
 
     <artifactId>sms_management</artifactId>
     <build>
+        <finalName>sms_management</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>

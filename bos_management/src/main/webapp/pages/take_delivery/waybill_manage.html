@@ -16,9 +16,29 @@
     <script type="text/javascript" src="../../easyui/ext/jquery.cookie.js"></script>
     <script src="../../easyui/locale/easyui-lang-zh_CN.js" type="text/javascript"></script>
     <script type="text/javascript">
+        //表单数据序列化
+        $.fn.serializeJson = function () {
+            var serializeObj = {};
+            var array = this.serializeArray();
+            var str = this.serialize();
+            $(array).each(function () {
+                if (serializeObj[this.name]) {
+                    if ($.isArray(serializeObj[this.name])) {
+                        serializeObj[this.name].push(this.value);
+                    } else {
+                        serializeObj[this.name] = [serializeObj[this.name], this.value];
+                    }
+                } else {
+                    serializeObj[this.name] = this.value;
+                }
+            });
+            return serializeObj;
+        };
         function doSearch() {
-            $('#tt').datagrid('load', {});
+            var params = $("#searchForm").serializeJson();
+            $('#tt').datagrid('load', params);  //将表单数据绑定到datagrid上面一起发送给后台。
         }
+
         //中转配送
         $(document).ready(function () {
             $("#transit").click(function () {
@@ -35,8 +55,13 @@
                         url: "../../createTransit.action",
                         type: "post",
                         data: {"wayBillIds": wayBillIds},
-                        success : function (data) {
-                            alert(data);
+                        success: function (data) {
+                            if (data.status == "1") {
+                                $.messager.show({
+                                    title: "提示框",
+                                    msg: data.messager
+                                })
+                            }
                         }
                     })
                 }
@@ -79,7 +104,8 @@
     <a href="javascript:void" class="easyui-linkbutton"
        plain="true" onclick="doSearch()">查询</a>
 </div>
-<table id="tt" class="easyui-datagrid" fit="true" toolbar="#tb" rownumbers="true" pagination="true">
+<table id="tt" class="easyui-datagrid" fit="true" toolbar="#tb" rownumbers="true" pagination="true"
+       url="../../wayBillPageQuery.action">
     <thead>
     <tr>
         <th field="ck" checkbox="true"></th>

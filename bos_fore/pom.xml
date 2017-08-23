@@ -12,6 +12,7 @@
     <artifactId>bos_fore</artifactId>
     <packaging>war</packaging>
     <build>
+        <finalName>bos_fore</finalName>
         <plugins>
             <plugin>
                 <groupId>org.apache.tomcat.maven</groupId>

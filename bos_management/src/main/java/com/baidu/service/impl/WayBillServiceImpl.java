@@ -25,7 +25,7 @@ public class WayBillServiceImpl implements WayBillService {
     //保存运单
     @Override
     public void saveWayBill(WayBill model) {
-        //这块拿到运单之后并不是直接进行保存操作
+        //拿到运单之后并不是直接进行保存操作
         WayBill wayBill = wbr.findByWayBillNum(model.getWayBillNum());
         if (wayBill == null) {
             //之前不存在
@@ -33,9 +33,14 @@ public class WayBillServiceImpl implements WayBillService {
 //            wber.save(model);
         }else {
             //之前就已经存在
-            Integer id = wayBill.getId();
-            BeanUtils.copyProperties(wayBill,model);
-            wayBill.setId(id);
+            if (wayBill.getSignStatus() == 1) {
+                Integer id = wayBill.getId();
+                BeanUtils.copyProperties(wayBill,model);
+                wayBill.setId(id);
+                wayBill.setSignStatus(1);
+            } else {
+                throw new RuntimeException("运单已经发出，无法进行修改操作！");
+            }
 //            wber.save(wayBill);
         }
     }

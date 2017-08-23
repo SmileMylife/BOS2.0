@@ -1,3 +1,4 @@
 com/baidu/service/base/TransitService.class
+com/baidu/dao/base/TransitRepository.class
 com/baidu/web/action/TransitAction.class
 com/baidu/service/impl/TransitServiceImpl.class
